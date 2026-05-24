@@ -74,15 +74,15 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* SideNavBar & Main Content */}
       <div className="flex flex-1 pt-16">
         <aside className="hidden lg:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-64 z-40 bg-surface-container-low border-r border-outline-variant p-6">
-          <div className="flex items-center gap-3 mb-10">
-            <div className="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center bg-surface-container shadow-[0_0_15px_rgba(180,197,255,0.4)] animate-pulse">
+          <Link to="/anchor" className="flex items-center gap-3 mb-10 hover:bg-surface-container-high p-2 rounded-xl transition-all group">
+            <div className="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center bg-surface-container shadow-[0_0_15px_rgba(180,197,255,0.4)] animate-pulse group-hover:scale-105 transition-transform">
               <Activity className="w-6 h-6 text-primary" />
             </div>
             <div>
               <h3 className="font-label-caps text-xs text-primary font-bold tracking-widest">AI Anchor</h3>
-              <p className="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">Listening for insights</p>
+              <p className="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">Talk to me</p>
             </div>
-          </div>
+          </Link>
 
           <nav className="flex-grow space-y-2">
             {navItems.map((item) => {
