@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=JetBrains+Mono:wght@500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-outline-variant: #424655;
+  --color-on-secondary-fixed: #291800;
+  --color-on-tertiary-container: #4c1a00;
+  --color-secondary-fixed: #ffddb4;
+  --color-on-secondary-container: #4f3100;
+  --color-secondary-container: #dc9100;
+  --color-tertiary-fixed: #ffdbcc;
+  --color-error-container: #93000a;
+  --color-tertiary-container: #ed691f;
+  --color-on-secondary: #452b00;
+  --color-surface-container-high: #272a33;
+  --color-on-tertiary-fixed-variant: #7c2e00;
+  --color-surface-container-highest: #32343e;
+  --color-surface-bright: #373942;
+  --color-on-primary: #002a77;
+  --color-on-surface-variant: #c3c6d8;
+  --color-on-primary-fixed: #00174b;
+  --color-primary-container: #618bff;
+  --color-surface-tint: #b4c5ff;
+  --color-tertiary-fixed-dim: #ffb695;
+  --color-background: #11131b;
+  --color-on-background: #e1e2ee;
+  --color-surface-dim: #11131b;
+  --color-surface-variant: #32343e;
+  --color-primary-fixed: #dbe1ff;
+  --color-on-tertiary-fixed: #351000;
+  --color-inverse-on-surface: #2e3039;
+  --color-on-error-container: #ffdad6;
+  --color-error: #ffb4ab;
+  --color-primary-fixed-dim: #b4c5ff;
+  --color-on-error: #690005;
+  --color-on-primary-fixed-variant: #003ea7;
+  --color-secondary: #ffb955;
+  --color-inverse-primary: #0053da;
+  --color-surface-container: #1d1f28;
+  --color-on-secondary-fixed-variant: #633f00;
+  --color-surface-container-low: #191b24;
+  --color-surface: #11131b;
+  --color-primary: #b4c5ff;
+  --color-on-tertiary: #571f00;
+  --color-on-primary-container: #002469;
+  --color-surface-container-lowest: #0c0e16;
+  --color-secondary-fixed-dim: #ffb955;
+  --color-inverse-surface: #e1e2ee;
+  --color-tertiary: #ffb695;
+  --color-on-surface: #e1e2ee;
+  --color-outline: #8d90a1;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  @apply bg-background text-on-background font-sans selection:bg-primary-container selection:text-on-primary-container;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar for dark theme */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #11131b; }
+::-webkit-scrollbar-thumb { background: #424655; border-radius: 10px; }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
