@@ -302,3 +302,54 @@ export async function fetchShareClip(text: string): Promise<{ clip: string }> {
 export async function fetchDemoData(): Promise<any> {
   return apiFetch("/api/demo");
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HISTORICAL TIME MACHINE ARCHIVE API
+// ═══════════════════════════════════════════════════════════════════════════
+export interface HistoricalArticle {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  source_name: string;
+  source_domain: string;
+  image_url?: string;
+  link: string;
+  pubDate: string;
+  category: string[];
+  language: string;
+  country: string[];
+}
+
+export interface HistoricalArchiveResponse {
+  epoch: string;
+  year: number;
+  articles: HistoricalArticle[];
+  historical_analysis: string;
+}
+
+export async function fetchHistoricalArchive(
+  epoch: string,
+  year: number
+): Promise<HistoricalArchiveResponse> {
+  const searchParams = new URLSearchParams({ epoch, year: String(year) });
+  return apiFetch<HistoricalArchiveResponse>(`/api/archive?${searchParams.toString()}`);
+}
+
+export interface TrendsResponse {
+  query: string;
+  hype_score: number;
+  hype_label: string;
+  bias_distribution: { left: number; center: number; right: number };
+  sentiment_breakdown: { fear: number; anger: number; optimism: number; trust: number; surprise: number };
+  sensationalist_phrases: string[];
+  core_narratives: string[];
+  timestamp: string;
+}
+
+export async function fetchTrends(query: string): Promise<TrendsResponse> {
+  return apiFetch<TrendsResponse>("/api/trends", {
+    method: "POST",
+    body: JSON.stringify({ query }),
+  });
+}

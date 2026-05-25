@@ -190,17 +190,17 @@ export function Feed() {
           {articles.map((article) => (
             <article
               key={article.id}
-              className="bg-[#F5F5F0] rounded-2xl border border-black/10 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-all group"
+              className="bg-surface-container/30 rounded-2xl border border-outline-variant/30 overflow-hidden shadow-lg flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(97,139,255,0.1)] group"
             >
               {article.image_url && (
-                <div className="relative overflow-hidden h-48 bg-slate-100">
+                <div className="relative overflow-hidden h-48 bg-slate-900">
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     src={article.image_url}
                     alt={article.title}
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded text-black text-[9px] font-bold uppercase tracking-wider shadow-sm">
+                  <div className="absolute top-4 left-4 bg-primary/20 backdrop-blur px-3 py-1.5 rounded text-primary text-[9px] font-bold uppercase tracking-wider border border-primary/30 shadow-sm">
                     {article.source_name}
                   </div>
                 </div>
@@ -208,71 +208,71 @@ export function Feed() {
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-3">
-                    <span className="font-label-caps text-[9px] text-black/50 tracking-widest uppercase">
+                    <span className="font-label-caps text-[9px] text-on-surface-variant/70 tracking-widest uppercase">
                       {(article.category || []).join(" • ")}
                     </span>
                   </div>
-                  <h3 className="font-serif text-xl text-black mb-3 leading-snug font-bold">
+                  <h3 className="font-serif text-xl text-on-background mb-3 leading-snug font-bold">
                     {article.title}
                   </h3>
                   {article.description && (
-                    <p className="text-black/70 text-sm line-clamp-3 mb-6">
+                    <p className="text-on-surface-variant text-sm line-clamp-3 mb-6">
                       {article.description}
                     </p>
                   )}
                 </div>
 
                 {/* AI Workspace actions */}
-                <div className="pt-4 border-t border-black/10 space-y-3">
-                  <span className="font-label-caps text-[9px] text-black/40 tracking-wider uppercase block font-bold">
+                <div className="pt-4 border-t border-outline-variant/30 space-y-3">
+                  <span className="font-label-caps text-[9px] text-on-surface-variant/50 tracking-wider uppercase block font-bold">
                     AI WORKSPACES
                   </span>
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => navigate("/debate", { state: { article } })}
-                      className="py-2.5 bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                      className="py-2.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
                     >
                       <MessageSquare className="w-3.5 h-3.5" /> Debate
                     </button>
                     <button
                       onClick={() => navigate("/explain", { state: { article } })}
-                      className="py-2.5 bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/20 hover:bg-[#4F46E5]/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                      className="py-2.5 bg-[#4F46E5]/10 text-primary border border-[#4F46E5]/20 hover:bg-[#4F46E5]/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
                     >
                       <GraduationCap className="w-3.5 h-3.5" /> Explain
                     </button>
                     <button
                       onClick={() => navigate("/bias", { state: { article } })}
-                      className="py-2.5 bg-yellow-600/10 text-yellow-700 border border-yellow-600/20 hover:bg-yellow-600/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                      className="py-2.5 bg-yellow-600/10 text-yellow-500 border border-yellow-600/20 hover:bg-yellow-600/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
                     >
                       <PieChart className="w-3.5 h-3.5" /> Bias Spectrum
                     </button>
                     <button
                       onClick={() => navigate("/fakeness", { state: { article } })}
-                      className="py-2.5 bg-red-600/10 text-red-600 border border-red-600/20 hover:bg-red-600/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                      className="py-2.5 bg-red-600/10 text-red-400 border border-red-600/20 hover:bg-red-600/20 transition-all rounded-lg font-label-caps text-[9px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
                     >
                       <Shield className="w-3.5 h-3.5" /> Fact Check
                     </button>
                   </div>
 
                   {/* Standard share & play buttons */}
-                  <div className="flex justify-between items-center pt-3 border-t border-black/5">
+                  <div className="flex justify-between items-center pt-3 border-t border-outline-variant/20">
                     <div className="flex gap-4">
                       <button
                         onClick={() => handleShareClip(article.description || article.title)}
-                        className="text-black/50 hover:text-primary transition-colors"
+                        className="text-on-surface-variant hover:text-primary transition-colors"
                         title="Copy share card"
                       >
                         <Share2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handlePlayTts(article.title + ". " + (article.description || ""), `article-${article.id}`)}
-                        className="text-black/50 hover:text-primary transition-colors"
+                        className="text-on-surface-variant hover:text-primary transition-colors"
                         title="Listen to story"
                       >
                         {ttsLoading === `article-${article.id}` ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
                         ) : playingTts === `article-${article.id}` ? (
-                          <Pause className="w-4 h-4" />
+                          <Pause className="w-4 h-4 animate-pulse" />
                         ) : (
                           <Headphones className="w-4 h-4" />
                         )}

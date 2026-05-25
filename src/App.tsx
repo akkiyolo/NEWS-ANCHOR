@@ -8,6 +8,8 @@ import { Debate } from './pages/Debate';
 import { Bias } from './pages/Bias';
 import { Fakeness } from './pages/Fakeness';
 import { Explain } from './pages/Explain';
+import { Archive } from './pages/Archive';
+import { Trends } from './pages/Trends';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="/fakeness" element={<Fakeness />} />
         <Route path="/explain" element={<Explain />} />
         <Route path="/anchor" element={<Anchor />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/trends" element={<Trends />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/personalized" replace />} />
       </Routes>

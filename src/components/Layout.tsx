@@ -21,6 +21,7 @@ export function Layout({ children }: { children: ReactNode }) {
   const navItems = [
     { name: "Today", path: "/personalized", icon: Sparkles },
     { name: "Analysis", path: "/feed", icon: Zap },
+    { name: "Trends", path: "/trends", icon: Activity },
     { name: "Archive", path: "/archive", icon: Archive },
   ];
 

@@ -176,6 +176,57 @@ Make it punchy and shareable. Return ONLY valid JSON: { "clip": "your tweet here
 Return ONLY valid JSON: { "ranked_indices": [0, 2, 1, ...] } where numbers are the 0-based indices of articles sorted by relevance.`,
     user: `Query: "${query}"\n\nArticles:\n${articles.map((a, i) => `${i}. ${a}`).join("\n")}`,
   }),
+
+  // Historical News Generation
+  history: (epoch: string, year: number) => ({
+    system: `You are a historical news broadcast archivist. Generate three realistic, authentic historical news articles that would have been published in the year ${year} during the "${epoch}" epoch. 
+The articles must capture the exact journalistic style, language, and cultural focus of that time period. 
+Return ONLY valid JSON with this exact shape:
+{
+  "articles": [
+    {
+      "title": "Historical headline matching the era's tone",
+      "description": "Short 1-2 sentence description of the news item",
+      "content": "Detailed article content written in authentic historical journalistic style of the year ${year}",
+      "source_name": "Authentic historical newspaper or publication name of that era",
+      "source_domain": "historical.domain",
+      "category": "politics" | "technology" | "science" | "business" | "entertainment",
+      "pubDate": "Authentic-looking date in the year ${year}"
+    }
+  ],
+  "historical_analysis": "A 3-sentence summary checking how well the popular news reports of that era matched what actually turned out to be historically true over time."
+}`,
+    user: `Generate articles for the year ${year} during the ${epoch} event.`,
+  }),
+
+  // Media Trends & Global Sentiment Analysis
+  trends: (query: string, articlesText: string) => ({
+    system: `You are a media research analytics expert. Analyze the collective media coverage of the topic "${query}" based on the provided articles.
+Assess the overall sensationalism, the political bias distribution, and the emotional sentiments of the coverage.
+Return ONLY valid JSON in this exact shape:
+{
+  "hype_score": <number 0 to 100 representing how sensationalist/hyperbolic the headlines and texts are>,
+  "hype_label": "Extremely Sensationalist" | "High Hype" | "Balanced Coverage" | "Objective",
+  "bias_distribution": {
+    "left": <number 0 to 100>,
+    "center": <number 0 to 100>,
+    "right": <number 0 to 100>
+  },
+  "sentiment_breakdown": {
+    "fear": <number 0 to 100>,
+    "anger": <number 0 to 100>,
+    "optimism": <number 0 to 100>,
+    "trust": <number 0 to 100>,
+    "surprise": <number 0 to 100>
+  },
+  "sensationalist_phrases": ["phrase1", "phrase2", "phrase3"],
+  "core_narratives": [
+    "Brief explanation of main narrative/viewpoint A",
+    "Brief explanation of main narrative/viewpoint B"
+  ]
+}`,
+    user: `Analyze the following articles about "${query}":\n\n${articlesText}`,
+  }),
 };
 
 // ─── Source Trust List ────────────────────────────────────────────────────
